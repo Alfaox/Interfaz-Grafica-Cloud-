@@ -1,0 +1,11 @@
+{% extends "core/base.html" %}
+{% block content %}
+<h1>Nuevo usuario</h1>
+<form method="post" class="stack">{% csrf_token %}
+  {% for f in form %}
+  <label for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}
+  {% for e in f.errors %}<p class="err">{{ e }}</p>{% endfor %}
+  {% endfor %}
+  <div class="bar"><button class="btn">Crear</button><a class="btn ghost" href="{% url 'usuarios' %}">Cancelar</a></div>
+</form>
+{% endblock %}

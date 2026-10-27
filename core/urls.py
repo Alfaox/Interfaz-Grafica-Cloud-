@@ -1,0 +1,36 @@
+from django.contrib.auth import views as auth
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('login/', auth.LoginView.as_view(template_name='core/login.html', redirect_authenticated_user=True), name='login'),
+    path('logout/', auth.LogoutView.as_view(), name='logout'),
+    path('usuarios/', views.usuarios, name='usuarios'),
+    path('usuarios/<int:pk>/editar/', views.usuario_editar, name='usuario_editar'),
+    path('usuarios/nuevo/', views.usuario_nuevo, name='usuario_nuevo'),
+    path('auditoria/', views.auditoria, name='auditoria'),
+    path('predios/', views.predios, name='predios'),
+    path('catalogos/<str:tipo>/nuevo/', views.catalogo_nuevo, name='catalogo_nuevo'),
+    path('catalogos/<str:tipo>/<int:pk>/editar/', views.catalogo_editar, name='catalogo_editar'),
+    path('catalogos/<str:tipo>/<int:pk>/estado/', views.estado_catalogo, name='estado_catalogo'),
+    path('colleras/<int:pk>/trasladar/', views.collera_trasladar, name='collera_trasladar'),
+    path('cuadrilla/', views.cuadrilla, name='cuadrilla'),
+    path('jornadas/nueva/', views.jornada_nueva, name='jornada_nueva'),
+    path('asistencia/', views.asistencia, name='asistencia'),
+    path('jornadas/<int:pk>/autogestion/', views.autogestion_configurar, name='autogestion_configurar'),
+    path('asistencia/<int:pk>/marca/', views.asistencia_marca, name='asistencia_marca'),
+    path('asistencia/<int:pk>/validar/', views.asistencia_validar, name='asistencia_validar'),
+    path('kilos/', views.kilos, name='kilos'),
+    path('kilos/<int:pk>/editar/', views.pesaje_editar, name='pesaje_editar'),
+    path('cierre/', views.cierre, name='cierre'),
+    path('jornadas/<int:pk>/observaciones/', views.jornada_observaciones, name='jornada_observaciones'),
+    path('jornadas/<int:pk>/cerrar/', views.jornada_cerrar, name='jornada_cerrar'),
+    path('jornadas/<int:pk>/reabrir/', views.jornada_reabrir, name='jornada_reabrir'),
+    path('reportes/', views.reportes, name='reportes'),
+    path('reportes/temporadas/', views.comparativa_temporadas, name='comparativa_temporadas'),
+    path('mi-asistencia/<int:pk>/marcar/', views.asistencia_propia_marcar, name='asistencia_propia_marcar'),
+    path('mi-asistencia/', views.mi_asistencia, name='mi_asistencia'),
+    path('mi-produccion/', views.mi_produccion, name='mi_produccion'),
+    path('clave/', auth.PasswordChangeView.as_view(template_name='core/clave.html', success_url='/'), name='password_change'),
+]

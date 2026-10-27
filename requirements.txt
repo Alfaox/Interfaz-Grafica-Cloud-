@@ -1,0 +1,4 @@
+Django>=5.2,<6
+argon2-cffi
+# Solo si usas MySQL/MariaDB (ver README):
+# mysqlclient

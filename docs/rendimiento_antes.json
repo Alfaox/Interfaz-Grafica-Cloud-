@@ -1,0 +1,220 @@
+{
+  "ejecutado_utc": "2026-10-27T00:17:00.884470+00:00",
+  "python": "3.14.6",
+  "django": "5.2.18",
+  "sistema": "Darwin x86_64",
+  "motor": "SQLite 3.53.4",
+  "modo_transaccion": "DEFERRED",
+  "timeout_sqlite_s": 5,
+  "aislamiento": "Copia temporal del archivo SQLite; sin escrituras en el original.",
+  "base_original_sin_cambios": true,
+  "pesajes_en_copia": 10432,
+  "concurrencia": 8,
+  "perfil_rutas": {
+    "home": {
+      "status": 200,
+      "consultas_sql": 14,
+      "ms": 135.28
+    },
+    "reportes": {
+      "status": 200,
+      "consultas_sql": 10,
+      "ms": 184.81
+    }
+  },
+  "escenarios": [
+    {
+      "escenario": "Reportes concurrentes, con middleware y plantillas",
+      "operaciones": 80,
+      "estados": {
+        "aceptada": 80
+      },
+      "errores": [],
+      "mediana_ms": 1947.32,
+      "p95_ms": 2797.61,
+      "max_ms": 3025.83,
+      "duracion_s": 17.981,
+      "operaciones_por_s": 4.45
+    },
+    {
+      "escenario": "Pesajes simultáneos en la misma jornada",
+      "operaciones": 8,
+      "estados": {
+        "error": 7,
+        "aceptada": 1
+      },
+      "errores": [
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 57.03483000070264
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 63.357717000144476
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 64.57540500014147
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 63.99861200043233
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 61.05293400014489
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 63.039292999746976
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 63.30744699971547
+        }
+      ],
+      "mediana_ms": 63.31,
+      "p95_ms": 68.41,
+      "max_ms": 68.41,
+      "duracion_s": 0.074,
+      "operaciones_por_s": 107.53,
+      "persistidos": 1,
+      "integridad": true
+    },
+    {
+      "escenario": "Misma entrada solicitada simultáneamente",
+      "operaciones": 8,
+      "estados": {
+        "error": 7,
+        "aceptada": 1
+      },
+      "errores": [
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 48.59717500039551
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 61.868265999692085
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 61.88551800005371
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 57.796066000264545
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 65.52845999976853
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 64.60559199967975
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 63.188664999870525
+        }
+      ],
+      "mediana_ms": 61.89,
+      "p95_ms": 71.15,
+      "max_ms": 71.15,
+      "duracion_s": 0.073,
+      "operaciones_por_s": 110.11,
+      "integridad": true
+    },
+    {
+      "escenario": "Cierre de jornada simultáneo con pesajes",
+      "operaciones": 8,
+      "estados": {
+        "aceptada": 1,
+        "error": 6,
+        "rechazada_validacion": 1
+      },
+      "errores": [
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 56.220339999526914
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 51.925443000072846
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 52.49152000033064
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 53.85366799964686
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 52.068508999582264
+        },
+        {
+          "estado": "error",
+          "tipo": "OperationalError",
+          "detalle": "database is locked",
+          "ms": 45.29317099968466
+        }
+      ],
+      "mediana_ms": 52.49,
+      "p95_ms": 95.15,
+      "max_ms": 95.15,
+      "duracion_s": 0.099,
+      "operaciones_por_s": 80.86,
+      "jornada_cerrada": true,
+      "rechaza_escritura_posterior": true,
+      "sin_escrituras_despues_cierre": true,
+      "integridad": true
+    }
+  ],
+  "sin_errores_y_con_integridad": false,
+  "limites": [
+    "Cliente Django interno, sin red, navegador ni servidor de producción.",
+    "Un equipo local y una copia SQLite. No certifica MySQL ni disponibilidad cloud.",
+    "Las solicitudes repetidas de asistencia deben ser rechazadas por validación.",
+    "No se definió un SLA: los tiempos son mediciones, no una garantía de capacidad."
+  ]
+}

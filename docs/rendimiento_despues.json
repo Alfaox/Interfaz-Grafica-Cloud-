@@ -1,0 +1,125 @@
+{
+  "ejecutado_utc": "2026-10-27T00:20:38.177769+00:00",
+  "python": "3.14.6",
+  "django": "5.2.18",
+  "sistema": "Darwin x86_64",
+  "motor": "SQLite 3.53.4",
+  "modo_transaccion": "IMMEDIATE",
+  "timeout_sqlite_s": 20,
+  "aislamiento": "Copia temporal del archivo SQLite; sin escrituras en el original.",
+  "base_original_sin_cambios": true,
+  "pesajes_en_copia": 10432,
+  "concurrencia": 8,
+  "perfil_rutas": {
+    "home": {
+      "status": 200,
+      "consultas_sql": 14,
+      "ms": 94.58
+    },
+    "reportes": {
+      "status": 200,
+      "consultas_sql": 11,
+      "ms": 128.93
+    }
+  },
+  "escenarios": [
+    {
+      "escenario": "Reportes concurrentes, con middleware y plantillas",
+      "operaciones": 80,
+      "estados": {
+        "aceptada": 80
+      },
+      "errores": [],
+      "mediana_ms": 2011.19,
+      "p95_ms": 2211.0,
+      "max_ms": 2238.71,
+      "duracion_s": 19.523,
+      "operaciones_por_s": 4.1
+    },
+    {
+      "escenario": "Pesajes simultáneos en la misma jornada",
+      "operaciones": 8,
+      "estados": {
+        "aceptada": 8
+      },
+      "errores": [],
+      "mediana_ms": 72.11,
+      "p95_ms": 122.66,
+      "max_ms": 122.66,
+      "duracion_s": 0.127,
+      "operaciones_por_s": 63.12,
+      "persistidos": 8,
+      "integridad": true
+    },
+    {
+      "escenario": "Entradas de ocho trabajadores diferentes",
+      "operaciones": 8,
+      "estados": {
+        "aceptada": 8
+      },
+      "errores": [],
+      "mediana_ms": 74.26,
+      "p95_ms": 182.53,
+      "max_ms": 182.53,
+      "duracion_s": 0.187,
+      "operaciones_por_s": 42.75,
+      "persistidas": 8,
+      "integridad": true
+    },
+    {
+      "escenario": "Creación simultánea de colleras con los mismos integrantes",
+      "operaciones": 8,
+      "estados": {
+        "rechazada_validacion": 7,
+        "aceptada": 1
+      },
+      "errores": [],
+      "mediana_ms": 29.93,
+      "p95_ms": 62.35,
+      "max_ms": 62.35,
+      "duracion_s": 0.067,
+      "operaciones_por_s": 119.59,
+      "integridad": true
+    },
+    {
+      "escenario": "Misma entrada solicitada simultáneamente",
+      "operaciones": 8,
+      "estados": {
+        "aceptada": 1,
+        "rechazada_validacion": 7
+      },
+      "errores": [],
+      "mediana_ms": 46.82,
+      "p95_ms": 114.95,
+      "max_ms": 114.95,
+      "duracion_s": 0.118,
+      "operaciones_por_s": 67.52,
+      "integridad": true
+    },
+    {
+      "escenario": "Cierre de jornada simultáneo con pesajes",
+      "operaciones": 8,
+      "estados": {
+        "aceptada": 1,
+        "rechazada_validacion": 7
+      },
+      "errores": [],
+      "mediana_ms": 32.28,
+      "p95_ms": 47.64,
+      "max_ms": 47.64,
+      "duracion_s": 0.051,
+      "operaciones_por_s": 155.63,
+      "jornada_cerrada": true,
+      "rechaza_escritura_posterior": true,
+      "sin_escrituras_despues_cierre": true,
+      "integridad": true
+    }
+  ],
+  "sin_errores_y_con_integridad": true,
+  "limites": [
+    "Las lecturas usan el cliente Django interno; las escrituras concurrentes llaman a servicios, sin red ni navegador.",
+    "Un equipo local y una copia SQLite. No certifica MySQL ni disponibilidad cloud.",
+    "Las solicitudes repetidas de asistencia deben ser rechazadas por validación.",
+    "No se definió un SLA: los tiempos son mediciones, no una garantía de capacidad."
+  ]
+}

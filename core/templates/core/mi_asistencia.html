@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="page-head"><div><div class="eyebrow">MI ASISTENCIA</div><h1>Tu tiempo en el campo.</h1><p>Consulta tus horas y marca tu jornada cuando el jefe habilite la autogestión.</p></div></div>
+<div class="notice success">Solo puedes marcar tu propia entrada y salida de hoy. La hora la registra el servidor; tu jefe revisa y valida las marcas.</div>
+<div class="stat featured" style="margin-bottom:22px"><div class="stat-top">Horas de esta semana hasta hoy</div><div class="stat-value">{{ horas|floatformat:2 }}<span>h</span></div><div class="stat-note">Solo registros con entrada y salida. Sin descuentos de pausas.</div></div>
+<section class="panel"><div class="panel-head"><h2>Mi historial de asistencia</h2></div><div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Cuadrilla</th><th>Entrada</th><th>Salida</th><th>Horas</th><th>Estado</th><th>Mi registro</th></tr></thead><tbody>
+{% for a in asistencias %}<tr><td>{{ a.jornada.fecha|date:'d/m/Y' }}</td><td>{{ a.jornada.cuadrilla }}</td><td>{{ a.entrada|time:'H:i'|default:'—' }}</td><td>{{ a.salida|time:'H:i'|default:'—' }}</td><td>{% if a.salida %}{{ a.horas|floatformat:2 }}{% else %}—{% endif %}</td><td>{% if a.ausente %}<span class="badge red">Ausente</span>{% elif a.validada %}<span class="badge">Validada</span>{% else %}<span class="badge amber">Por validar</span>{% endif %}</td><td>
+{% if a.jornada.editable and a.jornada.autogestion_habilitada and a.jornada.fecha == hoy and not a.ausente %}
+{% if not a.salida %}<form method="post" action="{% url 'asistencia_propia_marcar' a.pk %}">{% csrf_token %}{% if not a.entrada %}<button class="btn small primary" type="submit" name="accion" value="entrada">Marcar mi entrada</button>{% else %}<button class="btn small primary" type="submit" name="accion" value="salida">Marcar mi salida</button>{% endif %}</form>{% else %}<span class="badge">Completada</span>{% endif %}
+{% elif not a.jornada.editable %}<small>Jornada cerrada</small>{% elif not a.jornada.autogestion_habilitada %}<small>Autogestión deshabilitada</small>{% elif a.ausente %}<small>Solicita revisión al jefe</small>{% else %}<small>Solo puedes marcar hoy</small>{% endif %}</td></tr>
+{% empty %}<tr><td colspan="7"><div class="empty">Todavía no tienes asistencia registrada.</div></td></tr>{% endfor %}</tbody></table></div></section>
+{% endblock %}
